@@ -1,0 +1,12 @@
+.popup__close-button_type_edit-bio {
+  right: -38px;
+  top: -44px;
+}
+
+@media screen and (max-width: 567px) {
+  .popup__close-button_type_edit-bio {
+    right: 1px;
+    top: -38px;
+  }
+}
+

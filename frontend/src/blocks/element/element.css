@@ -1,0 +1,9 @@
+.element {
+  margin: 0 auto;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #fff;
+  min-width: 282px;
+  min-height: 361px;
+  position: relative;
+}

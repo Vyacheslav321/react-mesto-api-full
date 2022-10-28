@@ -1,0 +1,24 @@
+.page {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 880px;
+  min-width: 282px;
+  width: 68.75vw;
+  height: auto;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+#root {
+  margin: 0 auto;
+  padding: 0;
+  max-width: 880px;
+  min-width: 282px;
+  width: 68.75vw;
+  height: auto;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}

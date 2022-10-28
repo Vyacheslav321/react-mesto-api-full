@@ -1,0 +1,53 @@
+.profile__button-add {
+  background-color: #000;
+  color: #fff;
+  font-size: 0;
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 0;
+  padding: 23px 73px;
+  border: 2px solid #fff;
+  position: relative;
+}
+
+.profile__button-add:before {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(((150px - 2px * 2) / 2) - (22px / 2));
+  width: 22px;
+  height: 2px;
+  background-color: currentColor;
+}
+
+.profile__button-add:after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(((150px - 2px * 2) / 2) - (22px / 2));
+  width: 22px;
+  height: 2px;
+  background-color: currentColor;
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.profile__button-add:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 845px) {
+  .profile__button-add {
+    padding: 23px calc((282px - 4px) / 2);
+  }
+  .profile__button-add:before {
+    left: calc(((288px - 2px * 2) / 2) - (22px / 2) + 1px);
+    width: 16px;
+  }
+  .profile__button-add:after {
+    left: calc(((288px - 2px * 2) / 2) - (22px / 2) + 1px);
+    width: 16px;
+  }
+}

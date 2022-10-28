@@ -1,0 +1,9 @@
+.popup__header_type_input {
+  padding: 34px 0 39px;
+}
+
+@media screen and (max-width: 567px) {
+  .popup__header_type_input {
+    padding: 26px 0 65px;
+  }
+}

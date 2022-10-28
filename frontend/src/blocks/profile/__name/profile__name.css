@@ -1,0 +1,44 @@
+.profile__name {
+  hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  margin: 0;
+  padding: 0;
+  align-items: end;
+  max-width: 300px;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.2;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 1023px) {
+  .profile__name {
+    max-width: 230px;
+    font-size: 32px;
+    line-height: 1.18;
+  }
+}
+
+@media screen and (max-width: 845px) {
+  .profile__name {
+    line-height: 1.2;
+    text-align: center;
+    min-width: 189px;
+    grid-area: name;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 1.22;
+    width: 189px;
+  }
+}

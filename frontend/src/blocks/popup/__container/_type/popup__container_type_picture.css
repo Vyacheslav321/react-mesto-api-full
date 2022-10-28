@@ -1,0 +1,11 @@
+.popup__container_type_picture {
+  display: flex;
+  flex-direction: column;
+  object-fit: cover;
+  align-items: center;
+  margin: 0 auto;
+  /* width: 75vw;
+  height: 75vh; */
+  max-width: 75vw;
+  max-height: 75vh;
+}

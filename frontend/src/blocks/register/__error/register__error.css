@@ -1,0 +1,23 @@
+.register__error {
+    display: none;
+  position: absolute;
+  left: 0;
+  top: 38px;
+  margin: 0;
+  max-width: 358px;
+  min-height: 16px;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  align-self: start;
+  justify-self: start;
+  z-index: 100;
+}
+
+/* @media screen and (max-width: 567px) {
+  .error {
+    width: 238px;
+    min-height: 16px;
+  }
+} */

@@ -1,0 +1,9 @@
+.header__container {
+  margin: 0;
+  padding: 7px 0 0 0;
+  min-width: 200px;
+  min-height: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content:flex-end;
+}

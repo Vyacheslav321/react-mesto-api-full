@@ -1,0 +1,9 @@
+.popup__header_type_confirm {
+  padding: 34px 0 0px;
+}
+
+@media screen and (max-width: 567px) {
+  .popup__header_type_confirm {
+    padding: 26px 0 65px;
+  }
+}

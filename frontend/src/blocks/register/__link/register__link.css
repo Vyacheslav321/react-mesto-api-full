@@ -1,0 +1,15 @@
+.register__link {
+  margin: 0;
+  padding: 1px 0 0 0;
+  width: 358px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 2px;
+  font-family: "Inter", Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+}

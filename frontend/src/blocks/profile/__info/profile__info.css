@@ -1,0 +1,36 @@
+.profile__info {
+  margin-left: 30px;
+  margin-right: auto;
+  padding: 12px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-items: start;
+  row-gap: 8px;
+  position: relative;
+}
+
+@media screen and (max-width: 845px) {
+  .profile__info {
+    margin: 0 auto;
+    padding: 26px 0 36px;
+    min-width: 300px;
+    display: grid;
+    grid-template-columns: 16px auto 16px;
+    grid-template-rows: min-content minmax(20px, min-content);
+    grid-template-areas:
+      "none name edit"
+      "work work work";
+    column-gap: 10px;
+    justify-items: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .profile__info {
+    min-width: 232px;
+    padding: 27px 0 30px;
+    grid-template-columns: 16px 190px 16px;
+    row-gap: 6px;
+  }
+}
