@@ -15,10 +15,10 @@ const auth = (req, res, next) => {
   let playload;
 
   try {
-    // playload = jwt.verify(
-    //   token, NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp'
-    // );
-    playload = jwt.verify(token, NODE_ENV === 'production' ? 'pkuvqwongbqpoiqoufnvsvybqp' : JWT_SECRET);
+    playload = jwt.verify(
+      token,
+      NODE_ENV !== 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
+    );
   } catch (err) {
     return next(new NotValidError('token is not valid')); // 401
   }

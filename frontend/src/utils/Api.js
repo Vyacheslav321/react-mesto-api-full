@@ -1,7 +1,7 @@
 import { BASE_URL } from "./constants";
 
 class Api {
-  constructor({ defaultUrl, headers }) {
+  constructor({ headers }) {
     this._headers = headers;
   }
 

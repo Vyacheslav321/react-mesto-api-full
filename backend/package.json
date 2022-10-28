@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "mesto-react-backend",
   "version": "1.0.0",
   "description": "backend for mesto-react",
   "main": "app.js",
