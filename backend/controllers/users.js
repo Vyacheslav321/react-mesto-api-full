@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
 const { JWT_SECRET = 'pkuvqwongbqpoiqoufnvsvybqp' } = process.env;
 const AlreadyExistDataError = require('../errors/AlreadyExistDataError');
@@ -8,6 +8,7 @@ const BadRequestError = require('../errors/BadRequestError');
 const NotValidError = require('../errors/NotValidError');
 
 const User = require('../models/user');
+const auth = require('../middlewares/auth');
 
 // контроллер регистрации
 module.exports.createUser = (req, res, next) => {
@@ -51,12 +52,23 @@ module.exports.login = (req, res, next) => {
         if (!isValidPassword) {
           return next(new NotValidError('Пароль не верен')); // 401
         }
-        const token = jwt.sign(
-          { _id: user._id },
-          JWT_SECRET,
-          { expiresIn: '7d' },
-        );
-        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email, token }).end();
+        const token = auth(user._id);
+        res.cookie(JWT_SECRET, token, {
+          maxAge: 1000 * 60 * 60 * 24 * 7,
+          httpOnly: true,
+          sameSite: true,
+        });
+
+        return res.send({
+          message: 'Аутентификация успешно выполнена',
+          token,
+        });
+        // const token = jwt.sign(
+        //   { _id: user._id },
+        //   JWT_SECRET,
+        //   { expiresIn: '7d' },
+        // );
+        // return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email, token }).end();
       });
     })
     .catch((err) => {
