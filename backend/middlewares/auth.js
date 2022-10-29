@@ -17,7 +17,7 @@ const auth = (req, res, next) => {
   try {
     playload = jwt.verify(
       token,
-      NODE_ENV !== 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
+      NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
     );
   } catch (err) {
     return next(new NotValidError('token is not valid')); // 401
