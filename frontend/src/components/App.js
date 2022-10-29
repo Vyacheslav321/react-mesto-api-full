@@ -67,7 +67,8 @@ const App = () => {
     return authorize(email, password)
       .then((res) => {
         if (res) {
-          setCookie("jwt", res.token, { path: '/' })
+          // setCookie("jwt", res.token, { path: '/' })
+          localStorage.setItem('jwt', res.token);
           setEmail(res.email);
           setLoggedIn(true);
           history.replace({ pathname: "/" });
@@ -84,12 +85,13 @@ const App = () => {
 
   // проверка валидности токена и получения email
   useEffect(() => {
-    const token = cookies["jwt"];
+    // const token = cookies["jwt"];
+    const token = localStorage.getItem('jwt');
     if (token) {
       getToken(token)
         .then((res) => {
-          setEmail(res.email);
           setLoggedIn(true);
+          setEmail(res.email);
           history.push("/");
         })
         .catch((err) => {
