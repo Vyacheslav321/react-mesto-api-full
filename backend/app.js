@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const { cors } = require('./middlewares/cors');
+const cors = require('cors');
+// const cors = require('./middlewares/cors');
 const router = require('./routes');
 const errorsHandler = require('./middlewares/errorrsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -15,7 +16,21 @@ const { PORT = 3001 } = process.env;
 
 const app = express();
 
-app.use(cors);
+const options = {
+  origin: [
+    'http://localhost:3000',
+    'http://monichev.mesto.nomoredomains.sbs',
+    'https://monichev.mesto.nomoredomains.sbs',
+  ],
+  allowedHeaders: ['Content-Type', 'origin'],
+  methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+  preflightContinue: false,
+  credentials: true,
+};
+
+app.use(cors(options));
+
+// app.use(cors);
 
 app.use(helmet());
 app.disable('x-powered-by');
