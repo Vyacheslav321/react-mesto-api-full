@@ -31,8 +31,6 @@ const options = {
 
 app.use(cors(options));
 
-// app.use(cors);
-
 app.use(helmet());
 app.disable('x-powered-by');
 
