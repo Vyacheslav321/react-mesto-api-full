@@ -1,1 +1,1 @@
-module.exports.BASE_URL = 'https://mestobk.students.nomoredomains.icu'
+module.exports.BASE_URL = 'https://api.mesto.gorochnyi.nomoredomains.icu'
