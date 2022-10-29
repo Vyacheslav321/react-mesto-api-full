@@ -39,11 +39,19 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  return User.findUserByCredentials(email, password)
-  .then((user) => {
-    const token = jwt.sign({ _id: user.id }, JWT_SECRET, { expiresIn: '7d' });
-    res.send({ message: token });
-  })
+  User.findUserByCredentials(email, password)
+    // User.findOne({ email }).select('+password')
+    .then((user) => {
+      if (!user) {
+        throw new NotValidError('Такого пользователя не существует'); // 401
+      }
+      bcrypt.compare(password, user.password, (error, isValidPassword) => {
+        if (!isValidPassword) {
+          return next(new NotValidError('Пароль не верен')); // 401
+        }
+        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ message: token }).end();
+      });
+    })
   // User.findOne({ email }).select('+password')
   //   .then((user) => {
   //     if (!user) {
