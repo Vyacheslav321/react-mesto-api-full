@@ -39,8 +39,8 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findUserByCredentials(email, password)
-    // User.findOne({ email }).select('+password')
+  // User.findUserByCredentials(email, password)
+  User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
         throw new NotValidError('Такого пользователя не существует'); // 401
