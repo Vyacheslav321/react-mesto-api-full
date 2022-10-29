@@ -95,8 +95,7 @@ const App = () => {
           console.log(err.message);
         });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [cookies, history]);
 
   // загрузка карточек и данных пользователя после авторизации
   useEffect(() => {
