@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useCookies } from 'react-cookie'
+// import { useCookies } from 'react-cookie'
 import Header from "./Header";
 import Main from "./Main";
 import Login from "./Login";
@@ -44,7 +44,7 @@ const App = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const history = useHistory();
-  const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
+  // const [cookies, setCookie, removeCookie] = useCookies(["jwt"]);
 
   const onRegister = ({ email, password }) => {
     return register(email, password)
@@ -98,7 +98,7 @@ const App = () => {
           console.log(err.message);
         });
     }
-  }, [cookies, history]);
+  }, [history]);
 
   // загрузка карточек и данных пользователя после авторизации
   useEffect(() => {
@@ -237,8 +237,8 @@ const App = () => {
   }
 
   const handleExit = () => {
-    removeCookie("jwt")
-    // localStorage.removeItem("jwt");
+    // removeCookie("jwt")
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
   };
 
