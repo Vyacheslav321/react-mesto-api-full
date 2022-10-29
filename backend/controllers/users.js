@@ -56,7 +56,7 @@ module.exports.login = (req, res, next) => {
           JWT_SECRET,
           { expiresIn: '7d' },
         );
-        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email }).end();
+        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email, token }).end();
       });
     })
     .catch((err) => {
