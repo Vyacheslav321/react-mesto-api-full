@@ -19,8 +19,9 @@ const app = express();
 const options = {
   origin: [
     'http://localhost:3000',
-    'http://monichev.mesto.nomoredomains.sbs',
-    'https://monichev.mesto.nomoredomains.sbs',
+    'https://localhost:3000',
+    'http://sphere.students.nomoredomains.icu',
+    'https://sphere.students.nomoredomains.icu',
   ],
   allowedHeaders: ['Content-Type', 'origin'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
