@@ -49,6 +49,11 @@ module.exports.login = (req, res, next) => {
         if (!isValidPassword) {
           return next(new NotValidError('Пароль не верен')); // 401
         }
+        const token = jwt.sign(
+          { _id: user._id },
+          JWT_SECRET,
+          { expiresIn: '7d' },
+        );
         return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ message: token }).end();
       });
     })
