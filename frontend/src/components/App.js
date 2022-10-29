@@ -95,6 +95,7 @@ const App = () => {
           console.log(err.message);
         });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // загрузка карточек и данных пользователя после авторизации
@@ -188,8 +189,7 @@ const App = () => {
   }
 
   function handleAddPlaceSubmit(card) {
-    api
-      .createUserCard(card)
+    api.createUserCard(card)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
