@@ -39,7 +39,6 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  // User.findUserByCredentials(email, password)
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
@@ -54,26 +53,9 @@ module.exports.login = (req, res, next) => {
           JWT_SECRET,
           { expiresIn: '7d' },
         );
-        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ message: token }).end();
+        return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email, token }).end();
       });
     })
-  // User.findOne({ email }).select('+password')
-  //   .then((user) => {
-  //     if (!user) {
-  //       throw new NotValidError('Такого пользователя не существует'); // 401
-  //     }
-  //     bcrypt.compare(password, user.password, (error, isValidPassword) => {
-  //       if (!isValidPassword) {
-  //         return next(new NotValidError('Пароль не верен')); // 401
-  //       }
-  //       const token = jwt.sign(
-  //         { _id: user._id },
-  //         JWT_SECRET,
-  //         { expiresIn: '7d' },
-  //       );
-  //       return res.cookie('jwt', token, { maxAge: 3600000 * 24 * 7, httpOnly: true, secure: true }).send({ email, token }).end();
-  //     });
-  //   })
     .catch((err) => {
       if (err.name === 'CastError') {
         next(new NotValidError('Переданы неправильные почта или пароль'));
