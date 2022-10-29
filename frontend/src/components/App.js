@@ -68,6 +68,7 @@ const App = () => {
       .then((res) => {
         if (res) {
           setCookie("jwt", res.token, { path: '/' })
+          setEmail(res.email);
           setLoggedIn(true);
           history.replace({ pathname: "/" });
         }
