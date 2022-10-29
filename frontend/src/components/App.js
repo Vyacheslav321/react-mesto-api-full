@@ -103,7 +103,7 @@ const App = () => {
     if (loggedIn) {
       Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userInfo, cardData]) => {
-          // cardData.reverse();
+          cardData.reverse();
           setCurrentUser(userInfo);
           setCards(cardData);
         })
