@@ -87,7 +87,7 @@ const App = () => {
     if (token) {
       getToken(token)
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setLoggedIn(true);
           history.push("/");
         })
