@@ -22,7 +22,11 @@ class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка: ${res.status}`);
+    return res.json()
+      .then((err) => {
+        err.statusCode = res.status;
+        return Promise.reject(err);
+      })
   }
 
   // Получение информаци о карточках и пользователе
@@ -46,7 +50,7 @@ class Api {
   changeLikeCardStatus(id, isLiked) {
     return fetch(`${BASE_URL}/cards/${id}/likes`, {
       method: `${isLiked ? "PUT" : "DELETE"}`,
-      headers: this._headers,
+      headers: this._injectToken(this._headers),
       credentials: 'include',
     }).then(this._checkResOk);
   }
@@ -55,7 +59,7 @@ class Api {
   createUserCard(cardItem) {
     return fetch(`${BASE_URL}/cards`, {
       method: "POST",
-      headers: this._headers,
+      headers: this._injectToken(this._headers),
       credentials: 'include',
       body: JSON.stringify({
         name: cardItem.name,
@@ -67,7 +71,7 @@ class Api {
   deleteUserCard(idCard) {
     return fetch(`${BASE_URL}/cards/${idCard}`, {
       method: "DELETE",
-      headers: this._headers,
+      headers: this._injectToken(this._headers),
       credentials: 'include',
     }).then(this._checkResOk);
   }
@@ -75,7 +79,7 @@ class Api {
   setUserInfo(name, about) {
     return fetch(`${BASE_URL}/users/me`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._injectToken(this._headers),
       credentials: 'include',
       body: JSON.stringify({
         name: name,
@@ -87,7 +91,7 @@ class Api {
   setAvatar(userData) {
     return fetch(`${BASE_URL}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: this._injectToken(this._headers),
       credentials: 'include',
       body: JSON.stringify({
         avatar: userData,
