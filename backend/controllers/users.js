@@ -49,7 +49,7 @@ module.exports.login = (req, res, next) => {
           return next(new NotValidError('Пароль не верен')); // 401
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-        return res.send({ token });
+        return res.send({ token, email }).end();
       });
     })
     .catch((err) => {
