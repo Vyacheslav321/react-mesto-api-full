@@ -14,7 +14,7 @@ class Api {
       return headers;
     }
     return {
-      ...headers, 'Authorization': `Bearer ${this._getToken()}`
+      ...headers, 'authorization': `Bearer ${this._getToken()}`
     }
   }
 

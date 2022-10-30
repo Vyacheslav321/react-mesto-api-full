@@ -4,13 +4,13 @@ const { JWT_SECRET = 'pkuvqwongbqpoiqoufnvsvybqp' } = process.env;
 const NotValidError = require('../errors/NotValidError');
 
 const auth = (req, res, next) => {
-  const { authorize } = req.headers;
+  const { authorization } = req.headers;
 
-  if (!authorize || !authorize.startsWith('Bearer ')) {
+  if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new NotValidError('Требуется авторизация'); // 401
   }
 
-  const token = authorize.replace('Bearer ', '');
+  const token = authorization.replace('Bearer ', '');
 
   let payload;
 
