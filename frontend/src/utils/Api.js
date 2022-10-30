@@ -98,7 +98,7 @@ class Api {
 
 const api = new Api({
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   }
 });
 
