@@ -5,6 +5,19 @@ class Api {
     this._headers = headers;
   }
 
+  _getToken() {
+      return localStorage.getItem('jwt')
+  }
+
+  _injectToken(headers) {
+    if (!this._getToken()) {
+      return headers;
+    }
+    return {
+      ...headers, 'Authorization': `Bearer ${this._getToken()}`
+    }
+  }
+
   _checkResOk(res) {
     if (res.ok) {
       return res.json();
@@ -16,16 +29,16 @@ class Api {
   getCards() {
     return fetch(`${BASE_URL}/cards`, {
       method: "GET",
-      headers: this._headers,
-      credentials: 'include',
+      headers: this._injectToken(this._headers),
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
 
   getUserInfo() {
     return fetch(`${BASE_URL}/users/me`, {
       method: "GET",
-      headers: this._headers,
-      credentials: 'include',
+      headers: this._injectToken(this._headers),
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
 
