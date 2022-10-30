@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { JWT_SECRET = 'pkuvqwongbqpoiqoufnvsvybqp' } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 const AlreadyExistDataError = require('../errors/AlreadyExistDataError');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -48,7 +48,11 @@ module.exports.login = (req, res, next) => {
         if (!isValidPassword) {
           return next(new NotValidError('Пароль не верен')); // 401
         }
-        const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign(
+          { _id: user._id },
+          NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
+          { expiresIn: '7d' },
+        );
         return res.send({ token, email }).end();
       });
     })
@@ -60,29 +64,6 @@ module.exports.login = (req, res, next) => {
       }
     });
 };
-// module.exports.login = (req, res, next) => {
-//   const { email, password } = req.body;
-//   User.findOne({ email }).select('+password')
-//     .then((user) => {
-//       if (!user) {
-//         throw new NotValidError('Такого пользователя не существует'); // 401
-//       }
-//       bcrypt.compare(password, user.password, (error, isValidPassword) => {
-//         if (!isValidPassword) {
-//           return next(new NotValidError('Пароль не верен')); // 401
-//         }
-//         const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-//         return res.send({ token, email }).end();
-//       });
-//     })
-//     .catch((err) => {
-//       if (err.name === 'CastError') {
-//         next(new NotValidError('Переданы неправильные почта или пароль'));
-//       } else {
-//         next(err);
-//       }
-//     });
-// };
 
 // контроллер SignOut
 module.exports.signout = (_req, res) => {
