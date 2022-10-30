@@ -25,7 +25,7 @@ const options = {
   ],
   allowedHeaders: ['Authorization', 'Content-Type', 'origin'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
-  preflightContinue: false,
+  preflightContinue: true,
   credentials: true,
 };
 
