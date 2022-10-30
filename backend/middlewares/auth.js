@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+// const { NODE_ENV, JWT_SECRET } = process.env;
 const NotValidError = require('../errors/NotValidError');
 
 const auth = (req, res, next) => {
@@ -17,7 +17,8 @@ const auth = (req, res, next) => {
   try {
     playload = jwt.verify(
       token,
-      NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
+      'pkuvqwongbqpoiqoufnvsvybqp',
+      // NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
     );
   } catch (err) {
     return next(new NotValidError('token is not valid')); // 401
