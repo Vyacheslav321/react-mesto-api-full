@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-// const { NODE_ENV, JWT_SECRET } = process.env;
+const { JWT_SECRET = 'pkuvqwongbqpoiqoufnvsvybqp' } = process.env;
 const NotValidError = require('../errors/NotValidError');
 
 const auth = (req, res, next) => {
@@ -12,19 +12,15 @@ const auth = (req, res, next) => {
 
   const token = authorize.replace('jwt', '');
 
-  let playload;
+  let payload;
 
   try {
-    playload = jwt.verify(
-      token,
-      'pkuvqwongbqpoiqoufnvsvybqp',
-      // NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
-    );
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return next(new NotValidError('token is not valid')); // 401
   }
 
-  req.user = playload;
+  req.user = payload; // записываем пейлоуд в объект запроса
   return next();
 };
 
