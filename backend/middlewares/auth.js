@@ -4,13 +4,13 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const NotValidError = require('../errors/NotValidError');
 
 const auth = (req, res, next) => {
-  const cookie = req.cookies.jwt;
+  const authorize = req.headers;
 
-  if (!cookie) {
+  if (!authorize) {
     throw new NotValidError('Требуется авторизация'); // 401
   }
 
-  const token = cookie.replace('jwt', '');
+  const token = authorize.replace('jwt', '');
 
   let playload;
 
