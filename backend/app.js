@@ -20,8 +20,8 @@ const options = {
   origin: [
     'http://localhost:3000',
     'https://localhost:3000',
-    'http://mesto.gorochnyi.nomoredomains.icu',
-    'https://mesto.gorochnyi.nomoredomains.icu',
+    'http://mesto.gorochnyi.nomoredomains.icu/',
+    'https://mesto.gorochnyi.nomoredomains.icu/',
   ],
   allowedHeaders: ['Content-Type', 'origin'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
