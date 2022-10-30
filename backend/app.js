@@ -23,7 +23,7 @@ const options = {
     'http://mesto.gorochnyi.nomoredomains.icu',
     'https://mesto.gorochnyi.nomoredomains.icu',
   ],
-  allowedHeaders: ['Bearer', 'Content-Type', 'origin'],
+  allowedHeaders: ['authorization ', 'Content-Type', 'origin'],
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
   // preflightContinue: true,
   credentials: true,
