@@ -10,7 +10,7 @@ const auth = (req, res, next) => {
     throw new NotValidError('Требуется авторизация'); // 401
   }
 
-  const token = authorize.replace('jwt', '');
+  const token = authorize.replace('Bearer ', '');
 
   let payload;
 
