@@ -39,7 +39,7 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findOne({ email }).select('+password')
+  User.findUserByCredentials(email, password)
     .then((user) => {
       if (!user) {
         throw new NotValidError('Такого пользователя не существует'); // 401
@@ -49,7 +49,7 @@ module.exports.login = (req, res, next) => {
           return next(new NotValidError('Пароль не верен')); // 401
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-        return res.send({ token, email }).end();
+        return res.send({ token, email });
       });
     })
     .catch((err) => {
@@ -86,7 +86,7 @@ module.exports.login = (req, res, next) => {
 
 // контроллер SignOut
 module.exports.signout = (_req, res) => {
-  res.clearCookie('jwt').send({ message: 'Выход' });
+  res.send({ message: 'Выход' });
 };
 
 // сработает при GET-запросе на URL /users

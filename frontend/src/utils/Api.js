@@ -17,7 +17,7 @@ class Api {
     return fetch(`${BASE_URL}/cards`, {
       method: "GET",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
 
@@ -25,7 +25,7 @@ class Api {
     return fetch(`${BASE_URL}/users/me`, {
       method: "GET",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
 
@@ -34,7 +34,7 @@ class Api {
     return fetch(`${BASE_URL}/cards/${id}/likes`, {
       method: `${isLiked ? "PUT" : "DELETE"}`,
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
 
@@ -43,7 +43,7 @@ class Api {
     return fetch(`${BASE_URL}/cards`, {
       method: "POST",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
       body: JSON.stringify({
         name: cardItem.name,
         link: cardItem.link,
@@ -55,7 +55,7 @@ class Api {
     return fetch(`${BASE_URL}/cards/${idCard}`, {
       method: "DELETE",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
     }).then(this._checkResOk);
   }
   // Редактирование инфо о пользователе
@@ -75,7 +75,7 @@ class Api {
     return fetch(`${BASE_URL}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
-      credentials: 'include',
+      // credentials: 'include',
       body: JSON.stringify({
         avatar: userData,
       }),
