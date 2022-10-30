@@ -30,7 +30,7 @@ class Api {
     return fetch(`${BASE_URL}/cards`, {
       method: "GET",
       headers: this._injectToken(this._headers),
-      // credentials: 'include',
+      credentials: 'include',
     }).then(this._checkResOk);
   }
 
@@ -38,7 +38,7 @@ class Api {
     return fetch(`${BASE_URL}/users/me`, {
       method: "GET",
       headers: this._injectToken(this._headers),
-      // credentials: 'include',
+      credentials: 'include',
     }).then(this._checkResOk);
   }
 
