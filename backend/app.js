@@ -7,7 +7,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
-// const cors = require('./middlewares/cors');
 const router = require('./routes');
 const errorsHandler = require('./middlewares/errorrsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
