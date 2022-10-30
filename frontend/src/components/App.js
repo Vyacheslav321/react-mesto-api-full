@@ -91,7 +91,7 @@ const App = () => {
       getToken(token)
         .then((res) => {
           setLoggedIn(true);
-          setEmail(res.email);
+          // setEmail(res.email);
           history.push("/");
         })
         .catch((err) => {
