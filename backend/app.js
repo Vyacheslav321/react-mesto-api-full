@@ -54,6 +54,5 @@ app.use(errors()); // обработчик ошибок celebrate
 app.use(errorsHandler);// централизованный обработчик ошибок
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening on port ${PORT}`);
 });
