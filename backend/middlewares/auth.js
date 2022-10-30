@@ -4,9 +4,9 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const NotValidError = require('../errors/NotValidError');
 
 const auth = (req, res, next) => {
-  const authorize = req.headers;
+  const { authorize } = req.headers;
 
-  if (!authorize) {
+  if (!authorize || !authorize.startsWith('Bearer ')) {
     throw new NotValidError('Требуется авторизация'); // 401
   }
 
