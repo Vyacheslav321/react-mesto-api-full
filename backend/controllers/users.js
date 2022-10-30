@@ -39,7 +39,7 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findUserByCredentials(email, password)
+  User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
         throw new NotValidError('Такого пользователя не существует'); // 401
@@ -49,7 +49,7 @@ module.exports.login = (req, res, next) => {
           return next(new NotValidError('Пароль не верен')); // 401
         }
         const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-        return res.send({ token, email });
+        return res.send({ token, email }).end();
       });
     })
     .catch((err) => {
