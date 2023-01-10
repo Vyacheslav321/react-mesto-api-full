@@ -11,7 +11,7 @@ const router = require('./routes');
 const errorsHandler = require('./middlewares/errorrsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 6001 } = process.env;
 
 const app = express();
 
@@ -36,7 +36,7 @@ app.use(cookieParser());// Парсер кук как мидлвэр
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/mestodb', { useNewUrlParser: true }); // подключение сервера mongo
+mongoose.connect('mongodb://localhost:27017/mestodb'); // подключение сервера mongo
 
 app.use(requestLogger);
 

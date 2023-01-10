@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "set NODE_ENV=development&& nodemon app.js"
   },
   "author": "V.Gorochnyi",
   "license": "ISC",

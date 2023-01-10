@@ -28,11 +28,7 @@ function PopupWithForm({
           aria-label="Закрыть"
           onClick={onClose}
         ></button>
-        <form
-          className="popup__form"
-          name={`${name}`}
-          onSubmit={onSubmit}
-        >
+        <form className="popup__form" name={`${name}`} onSubmit={onSubmit}>
           <h3 className="popup__header popup__header_type_input">{title}</h3>
           {children}
           <button

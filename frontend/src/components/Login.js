@@ -25,7 +25,6 @@ const Login = ({ onLogin }) => {
       <p className="register__welcome">Вход</p>
       <p className="register__error">{message}</p>
       <form className="register__form" onSubmit={handleSubmit}>
-        {/* <label htmlFor="email">Email</label> */}
         <input
           className="register__input"
           id="email"
@@ -36,8 +35,6 @@ const Login = ({ onLogin }) => {
           value={email}
           onChange={({ target }) => setEmail(target.value)}
         />
-        {/* <span id="register-email-error" className="register__error"></span> */}
-        {/* <label htmlFor="password">Пароль</label> */}
         <input
           className="register__input"
           id="password"
@@ -48,7 +45,6 @@ const Login = ({ onLogin }) => {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
-        {/* <span id="register-password-error" className="register__error"></span> */}
         <div className="register__button-container">
           <button className="register__link" type="submit">
             Войти

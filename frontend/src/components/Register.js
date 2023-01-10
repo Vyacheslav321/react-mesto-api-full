@@ -24,7 +24,6 @@ const Register = ({ onRegister }) => {
           value={email}
           onChange={({ target }) => setEmail(target.value)}
         />
-        {/* <span id="register-email-error" className="register__error register__error_visible">ffff</span> */}
         <input
           className="register__input"
           id="password"
@@ -35,7 +34,6 @@ const Register = ({ onRegister }) => {
           value={password}
           onChange={({ target }) => setPassword(target.value)}
         />
-        {/* <span id="register-password-error" className="register__error register__error_visible">ffffzzzzzzzz</span> */}
         <div className="register__button-container">
           <button className="register__link" type="submit">
             Зарегистрироваться
