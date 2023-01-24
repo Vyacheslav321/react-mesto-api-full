@@ -4,7 +4,7 @@ const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+// const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const cors = require('cors');
 const router = require('./routes');
@@ -33,7 +33,7 @@ app.use(cors(options));
 app.use(helmet());
 app.disable('x-powered-by');
 
-app.use(cookieParser());// Парсер кук как мидлвэр
+// app.use(cookieParser());// Парсер кук как мидлвэр
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
