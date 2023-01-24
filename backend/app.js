@@ -10,6 +10,7 @@ const cors = require('cors');
 const router = require('./routes');
 const errorsHandler = require('./middlewares/errorrsHandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const limiter = require('./middlewares/limiter');
 
 const { PORT = 6001 } = process.env;
 
@@ -39,6 +40,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost:27017/mestodb'); // подключение сервера mongo
 
 app.use(requestLogger);
+// ограничение на количество подключений
+app.use(limiter);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
