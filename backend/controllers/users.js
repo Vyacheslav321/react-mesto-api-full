@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV } = process.env;
 const AlreadyExistDataError = require('../errors/AlreadyExistDataError');
 const NotFoundError = require('../errors/NotFoundError');
 const BadRequestError = require('../errors/BadRequestError');
@@ -15,9 +15,14 @@ module.exports.createUser = (req, res, next) => {
     name, about, avatar, email, password,
   } = req.body;
   User.findOne({ email });
-  bcrypt.hash(password, 10)
+  bcrypt
+    .hash(password, 10)
     .then((hash) => User.create({
-      name, about, avatar, email, password: hash,
+      name,
+      about,
+      avatar,
+      email,
+      password: hash,
     }))
     .then((userData) => res.send({
       name: userData.name,
@@ -30,7 +35,9 @@ module.exports.createUser = (req, res, next) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Переданы некорректные данные')); // 400
       } else if (err.code === 11000) {
-        next(new AlreadyExistDataError('Пользователь с таким email уже существует')); // 409
+        next(
+          new AlreadyExistDataError('Пользователь с таким email уже существует'),
+        ); // 409
       } else {
         next(err);
       }
@@ -39,7 +46,8 @@ module.exports.createUser = (req, res, next) => {
 // контроллер login
 module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
-  User.findOne({ email }).select('+password')
+  User.findOne({ email })
+    .select('+password')
     .then((user) => {
       if (!user) {
         throw new NotValidError('Такого пользователя не существует'); // 401
@@ -48,11 +56,9 @@ module.exports.login = (req, res, next) => {
         if (!isValidPassword) {
           return next(new NotValidError('Пароль не верен')); // 401
         }
-        const token = jwt.sign(
-          { _id: user._id },
-          NODE_ENV === 'production' ? JWT_SECRET : 'pkuvqwongbqpoiqoufnvsvybqp',
-          { expiresIn: '7d' },
-        );
+        const token = jwt.sign({ _id: user._id }, NODE_ENV, {
+          expiresIn: '7d',
+        });
         return res.send({ token, email }).end();
       });
     })
